@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    #root {
+        @apply bg-darkblue-900 text-white/80
+    }
+
+}
+
+@layer components {
+    .container-1 {
+        @apply mx-auto w-full max-w-5xl
+    }
+
+    .container-2 {
+        @apply mx-auto w-full max-w-4xl
+    }
+
+    .w-container-1 {
+        @apply w-[64rem]
+    }
+}
