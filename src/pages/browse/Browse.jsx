@@ -1,7 +1,71 @@
+import { useInfiniteQuery } from "@tanstack/react-query";
+import axios from "axios";
+import { Fragment } from "react";
+import ComicCard from "../../components/ComicCard";
 
 export default function Browse() {
+  const { isPending, data, isFetchingNextPage, fetchNextPage, hasNextPage } =
+    useInfiniteQuery({
+      queryKey: ["getComicsInfinity"],
+      queryFn: async ({ pageParam }) => {
+        const { data } = await axios.get(
+          `${
+            import.meta.env.VITE_API_URL
+          }/comic/getall?page=${pageParam}&ex=yes`
+        );
+        if (data) return data;
+        throw Error("No data");
+      },
+      initialPageParam: 1,
+      getNextPageParam: (lastPage) => {
+        return lastPage.isNext ? parseInt(lastPage.page) + 1 : undefined;
+      },
+      staleTime: 5 * (60 * 1000),
+    });
 
   return (
-    <div>Browse Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore dignissimos molestias ea dicta saepe, ad ab eius atque commodi odio inventore error vero, autem iusto praesentium voluptate cumque sequi repellendus ut reiciendis quae numquam aliquid. Adipisci ullam nulla, vel neque accusamus architecto nihil magni assumenda ea a possimus iure iste non repudiandae nesciunt quia quod suscipit delectus fugit facilis, atque reiciendis nostrum. Odio enim placeat fugiat nihil nobis assumenda nemo officiis nesciunt laboriosam adipisci eligendi, dolorum non consequuntur voluptatem corporis, saepe reiciendis dignissimos illum voluptatum sed voluptas. Qui libero consequuntur vitae, ad assumenda, perspiciatis fugiat esse aliquam tenetur ut dolores deserunt commodi voluptas aliquid minima numquam nobis deleniti nisi iure! Veritatis ipsa deserunt perspiciatis eius porro tenetur ex quod corporis vel molestias repellat sed facilis quibusdam, sapiente dignissimos voluptatem! Magni non dicta, vero aliquid iste fugit, tempora mollitia eligendi vitae, pariatur rerum debitis. Explicabo tenetur, corporis tempora in officia ipsa voluptates reiciendis dignissimos modi nisi cum, incidunt sapiente dolor assumenda! Minus distinctio cum quod itaque deleniti dicta voluptatibus, velit architecto, quis id dolorum neque nihil odio doloribus ipsam aperiam inventore qui nesciunt repudiandae impedit excepturi minima! Odit repellendus reiciendis ipsum voluptas pariatur, libero sunt voluptates! Impedit accusamus amet doloribus repudiandae consectetur recusandae esse libero neque tempore. Omnis aperiam accusamus quia exercitationem eos facere neque doloribus laudantium, repudiandae totam, fugit numquam blanditiis eveniet tempore praesentium, dolorum adipisci explicabo obcaecati maiores et quisquam unde voluptate impedit. Eligendi incidunt iste ex molestias necessitatibus dicta earum animi sit perferendis culpa soluta vero quos eaque, cum, dolore dolorem asperiores praesentium. Corrupti aut ea eaque voluptatibus autem saepe, esse harum nostrum dolor dolorem eos repellendus reprehenderit quam cumque dolorum ipsam numquam illum rem tenetur ut reiciendis asperiores porro beatae. Consequatur quam minima doloremque laboriosam repudiandae non fugit illo reiciendis eius eum perferendis quibusdam at quos laudantium dicta veritatis, odit, culpa nulla quo reprehenderit incidunt natus quisquam est! Assumenda dignissimos enim dolorum aperiam, suscipit tempore soluta omnis nulla dolore fugit itaque a facilis tempora quisquam vel iure! Ipsum in eum eos exercitationem modi, sit iusto rem a praesentium impedit aspernatur dolore, ducimus, voluptas quibusdam. Laboriosam totam laborum similique deserunt dicta laudantium magni deleniti blanditiis, vel alias unde eligendi dolore! Quam, inventore? Iure animi voluptatem cupiditate corporis tempore neque architecto doloribus ea repudiandae fugit! Iure ea voluptas culpa repellat commodi tempora ullam dolor recusandae beatae minus pariatur nisi enim eligendi assumenda eaque maiores sint atque omnis perspiciatis, delectus voluptatem quasi asperiores id temporibus? Eveniet sequi eius iusto! Laboriosam maxime sequi provident aperiam, mollitia in sint unde quos inventore qui ipsam nam delectus ipsum ab architecto sunt magni, eius minima ducimus placeat, nisi quasi. Ad blanditiis accusamus quia harum asperiores. Ea tempore temporibus pariatur, omnis mollitia libero voluptas harum nam possimus obcaecati aperiam impedit architecto eaque minima rem! Quisquam, soluta dolor consequatur error repellat officiis, eveniet et facilis fuga aliquam quae. Tempore numquam laboriosam ad ipsa aspernatur id explicabo quam officia vitae exercitationem aliquid, atque voluptate. Pariatur officiis, quibusdam quia excepturi iure porro, dolorum quaerat, sit eius itaque sed explicabo. Voluptas ad exercitationem inventore hic dolorem quod veritatis, earum beatae, laboriosam labore culpa omnis repellat reprehenderit ea qui architecto. Rerum, porro! Libero alias unde, ipsum minus quos, explicabo, molestiae pariatur vero necessitatibus voluptate voluptatibus veritatis sunt voluptatum eligendi ad dolorum sapiente quam quasi ab amet nostrum quod doloremque sequi aperiam! Iure quaerat facere reiciendis totam soluta sapiente, ut nihil eveniet unde vel et iste ipsum? Cumque quam aut suscipit recusandae eius laborum illo cupiditate, dignissimos nobis velit, quasi officia voluptates dolorum esse ad? A reiciendis rem, quos ratione atque quaerat consequatur recusandae vitae fugit veniam explicabo cupiditate illo eligendi, officia necessitatibus ducimus inventore sunt sit beatae! Delectus ducimus accusantium, rerum explicabo velit at impedit sequi doloribus quibusdam fugit eaque. Commodi maiores ipsa, cum et vero eveniet neque delectus assumenda quos, iste dolor deserunt eligendi nam laboriosam necessitatibus error animi nesciunt! Suscipit, explicabo? Totam, possimus natus tempore nostrum repellat, sint eligendi qui mollitia minus repudiandae placeat aut, illum saepe earum non at veniam a iste necessitatibus! Ab aut, sunt vero exercitationem odit, nemo deleniti suscipit reiciendis esse quam adipisci, hic aliquid neque magni rem perspiciatis et eveniet dolore. Explicabo quo necessitatibus earum odit illo perferendis doloribus! Quas nisi sequi deserunt quisquam eligendi ea, voluptates dignissimos assumenda, architecto ut ipsa! Possimus aliquid commodi error cupiditate modi voluptatum hic quam delectus, pariatur non molestias temporibus, nostrum autem amet incidunt voluptatibus maiores? Accusantium, aliquid! Exercitationem voluptate quia voluptatum ullam vel amet assumenda, cupiditate deleniti eius hic laboriosam placeat eligendi magni illum autem. Tempore culpa quas reprehenderit? Nemo maxime minima libero unde, voluptate cumque beatae deleniti, veritatis velit vero excepturi aliquam sint nam quidem vitae nostrum, a assumenda natus nesciunt! Dolorum perspiciatis eos libero suscipit dolores quisquam illum consequatur, quas iusto ipsum quos nobis ea delectus distinctio iure unde odit maiores quaerat fuga reiciendis sint fugiat sequi. Nihil, alias a deserunt facilis dolorem sequi nam delectus ut facere veniam doloribus non, provident unde error repellat architecto ipsam voluptatum nostrum quaerat at ipsa assumenda ducimus. Veniam, impedit eos! Fugit modi hic magnam voluptatem soluta iusto molestiae necessitatibus. Aperiam ipsam consequatur nisi dignissimos natus, error provident magni voluptatem officiis quas unde excepturi. Molestiae obcaecati aut dolor vel. Minus laboriosam quod nihil necessitatibus mollitia dolor ex dolorum aut minima deleniti, quia quas nulla autem dolore quisquam officia id placeat labore odit reiciendis illo quasi tempora natus! Quod, quas? Est eos quis tempore molestiae aliquam libero vero esse dolorem. Molestiae deserunt veritatis necessitatibus aliquam molestias facilis, ullam et consequuntur quasi sint laboriosam facere quae! Architecto tempora, distinctio autem ab nam iusto accusantium! Facilis inventore veniam ut odit asperiores excepturi corrupti ratione ipsum eum nam quidem eligendi maxime enim fuga dolor corporis et, quas consectetur, fugiat, dolores illum. Sequi voluptatum error voluptate culpa quisquam, aspernatur quidem commodi obcaecati eius, aut dicta quae hic labore! Quae, beatae reprehenderit qui voluptates voluptas cupiditate esse perspiciatis ratione et officia optio voluptatem totam repellat adipisci eos pariatur nam enim illo fugit. Cumque eaque tempora a temporibus ea incidunt error repellendus laborum quidem beatae!</div>
-  )
+    <div>
+      {isPending ? (
+        "loading..."
+      ) : (
+        <section className="p-4 flex flex-col gap-5">
+          <h1 className="text-center font-medium text-2xl p-20 rounded-lg">
+            All Comics
+          </h1>
+
+          <ul className="grid grid-cols-3 gap-x-5 gap-y-7 overflow-hidden md:grid-cols-6">
+            {data.pages.map((data, index) => (
+              <Fragment key={index}>
+                {data.data.map((comic) => (
+                  <li key={comic.id}>
+                    <ComicCard
+                      comic={comic}
+                      label={comic.main_id ? false : true}
+                    />
+                  </li>
+                ))}
+              </Fragment>
+            ))}
+          </ul>
+
+          {isFetchingNextPage || isPending || !hasNextPage ? (
+            <div className="mt-10 flex w-full items-center justify-center gap-2 rounded bg-white/10 p-3">
+              <span className="text-[0.94rem] text-white/55 font-semibold">
+                Thats it!
+              </span>
+            </div>
+          ) : (
+            <button
+              onClick={fetchNextPage}
+              className="mt-10 flex w-full items-center justify-center gap-2 rounded bg-white/10 p-3"
+            >
+              <span className="flex items-center gap-2 text-[0.94rem] font-semibold">
+                Browse more
+              </span>
+            </button>
+          )}
+        </section>
+      )}
+    </div>
+  );
 }

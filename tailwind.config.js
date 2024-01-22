@@ -4,10 +4,18 @@ export default {
   theme: {
     extend: {
       colors : {
-        "darkblue-900" : "#0b1622",
-        "darkblue-800" : "#152232",
+        "dark-900" : "#010919",
+        "dark-800" : "#161e2c",
+        "primary" : "#4e86f4",
+      },
+      screens : {
+        "xxs" : "240px",
+        "xs" : "480px"
       }
     },
   },
   plugins: [],
 };
+
+// "blue-900" : "#0b1622",
+// "blue-800" : "#152232",
