@@ -1,4 +1,3 @@
-import { BsFire } from "react-icons/bs";
 import { FaAngleRight } from "react-icons/fa";
 import { formatDateAgo } from "../../utils/dateTime";
 
@@ -8,19 +7,21 @@ export default function ComicCard({ comic, label = false }) {
       <div className="w-full aspect-[3/4.7] overflow-hidden rounded-lg relative bg-cyan-600">
         {label && (
           <div className="absolute top-0 flex w-full justify-end bg-gradient-to-b from-black/50 to-transparent p-1 pb-3">
-            <span className="rounded-bl-lg rounded-tr bg-cyan-600/60 px-2 text-[0.8rem] font-semibold backdrop-blur-sm">
+            <span className="rounded-bl-lg rounded-tr bg-cyan-600/70 px-2 text-[0.8rem] backdrop-blur-sm">
               {comic.source}
             </span>
           </div>
         )}
 
         <img
+          loading="lazy"
+          height="100px"
           src={comic.cover_img}
           alt={comic.title}
           className="w-full h-full object-cover text-xs"
         />
 
-        <section className="flex items-center gap-2 absolute bottom-[-1px] pr-2 pl-3 py-2 bg-gradient-to-t from-black/80 to-black/50 w-full backdrop-blur-sm">
+        <section className="flex items-center gap-2 absolute bottom-[-1px] pr-2 pl-3 py-[0.4rem] bg-gradient-to-t from-black/80 to-black/50 w-full backdrop-blur-sm">
           <section className="flex grow flex-col">
             <span className="text-[0.8rem] font-[700]">
               Chapter {comic.latest_chapter}
@@ -33,12 +34,7 @@ export default function ComicCard({ comic, label = false }) {
         </section>
       </div>
 
-      <h3 className="text-sm line-clamp-2 leading-6">
-        {label && (
-          <BsFire className="inline-block -mt-1 mr-[0.3rem] text-red-500" />
-        )}
-        {comic.title}
-      </h3>
+      <h3 className="text-sm line-clamp-2 leading-6">{comic.title}</h3>
     </div>
   );
 }

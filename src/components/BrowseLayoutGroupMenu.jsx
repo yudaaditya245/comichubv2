@@ -55,22 +55,22 @@ export default function BrowseLayoutGroupMenu() {
           leaveTo="opacity-0 scale-90"
         >
           <Popover.Panel
-            className="absolute bottom-5 right-5 md:right-0 bg-dark-800 border border-neutral-800 rounded overflow-hidden
+            className="absolute bottom-5 right-5 md:right-0 bg-dark-800 rounded overflow-hidden
                         flex flex-col max-w-full"
           >
             {({ close }) => (
               <>
-                <label className="bg-white/10 px-5 py-3 text-[0.9rem] font-semibold flex justify-between items-center">
+                <label className="bg-white/10 pl-5 pr-4 py-3 text-[0.9rem] font-semibold flex justify-between items-center">
                   Source
-                  <button className="bg-white/10 p-1 rounded" onClick={close}>
-                    <IoClose />
+                  <button className="bg-cyan-600 p-[0.1rem] text-white rounded" onClick={close}>
+                    <IoClose size={17}/>
                   </button>
                 </label>
                 <section className="grid grid-cols-2 gap-1 p-1">
                   {!isLoading &&
                     groupLists.map((group) => (
                       <NavLink
-                        to={group.slug}
+                        to={`/browse/${group.slug}`}
                         key={group.id}
                         className={({ isActive }) =>
                           twMerge(

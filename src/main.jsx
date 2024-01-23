@@ -2,9 +2,10 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 
 import "./index.css";
-import '@fontsource-variable/signika';
+import "@fontsource-variable/signika";
 
 import {
+  Navigate,
   Route,
   RouterProvider,
   createBrowserRouter,
@@ -26,9 +27,10 @@ const router = createBrowserRouter(
     <Route element={<LayoutWithNav />}>
       <Route path="/" element={<Home />} />
 
-      <Route path="/browse" element={<BrowseLayout />}>
-        <Route index element={<Browse />} />
-        <Route path=":source" element={<BrowseGroup />} />
+      <Route element={<BrowseLayout />}>
+        <Route path="/browse" element={<Navigate to="/browse/all" />} />
+        <Route path="/browse/:source/:page?" element={<Browse />} />
+        {/* <Route path=":source" element={<BrowseGroup />} /> */}
       </Route>
     </Route>
   )
