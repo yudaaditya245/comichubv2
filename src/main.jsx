@@ -15,7 +15,7 @@ import {
 // PAGES
 import LayoutWithNav from "./components/layout/LayoutWithNav.jsx";
 
-import Home from "./pages/home/home.jsx";
+import Library from "./pages/Library.jsx";
 import Browse from "./pages/browse/Browse.jsx";
 import BrowseLayout from "./components/layout/BrowseLayout.jsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -24,7 +24,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route element={<LayoutWithNav />}>
-      <Route path="/" element={<Home />} />
+      <Route path="/" element={<Library />} />
 
       <Route element={<BrowseLayout />}>
         <Route path="/browse" element={<Navigate to="/browse/all" />} />

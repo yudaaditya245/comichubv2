@@ -13,7 +13,7 @@ export function SkeletonLatestComics({ length = 18, show = true }) {
       enterFrom="transform opacity-0 scale-75"
       enterTo="transform opacity-100 scale-100"
     >
-      <li className="flex w-full flex-col gap-4">
+      <li className="flex w-full flex-col gap-4 translate-y-">
         <div className="aspect-[3/4.5] animate-pulse rounded bg-cyan-600/30"></div>
         <div className="h-4 w-[80%] animate-pulse rounded bg-cyan-600/30"></div>
       </li>

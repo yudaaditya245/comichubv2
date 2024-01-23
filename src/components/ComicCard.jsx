@@ -4,7 +4,7 @@ import { formatDateAgo } from "../../utils/dateTime";
 export default function ComicCard({ comic, label = false }) {
   return (
     <div className="flex flex-col gap-3">
-      <div className="w-full aspect-[3/4.7] overflow-hidden rounded-lg relative bg-cyan-600">
+      <div className="w-full aspect-[3/4.7] overflow-hidden rounded relative bg-cyan-600">
         {label && (
           <div className=" absolute top-0 flex w-full p-1 pb-3">
             <span className="rounded-md bg-black/60 px-3 py-1 text-[0.78rem] backdrop-blur-sm font-semibold text-white/85">
