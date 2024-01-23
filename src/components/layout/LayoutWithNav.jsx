@@ -5,7 +5,7 @@ export default function LayoutWithNav() {
   
 
   return (
-    <div className="flex flex-col container-2 min-h-[100svb] pb-[4rem]">
+    <div className="flex flex-col container-2 min-h-[100svb] pb-[4.3rem]">
       <div className="grow">
         <Outlet />
       </div>

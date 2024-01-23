@@ -8,12 +8,10 @@
     }
 
     body {
-        font-family: 'Outfit Variable', sans-serif;
-    }
-
-    #root {
+        font-family: 'Signika Variable', sans-serif;
         @apply bg-dark-900 text-white/[0.85]
     }
+
 }
 
 @layer components {

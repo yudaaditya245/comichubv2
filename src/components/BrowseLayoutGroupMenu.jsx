@@ -2,6 +2,7 @@ import { twMerge } from "tailwind-merge";
 import useNavAutohide from "../../hooks/useNavAutohide";
 import { FaFolder } from "react-icons/fa";
 import { CgSpinner } from "react-icons/cg";
+import { IoClose } from "react-icons/io5";
 import { MdCollectionsBookmark } from "react-icons/md";
 import { Popover, Transition } from "@headlessui/react";
 import { Fragment } from "react";
@@ -59,8 +60,11 @@ export default function BrowseLayoutGroupMenu() {
           >
             {({ close }) => (
               <>
-                <label className="bg-white/10 px-5 py-3 text-[0.9rem] font-semibold">
+                <label className="bg-white/10 px-5 py-3 text-[0.9rem] font-semibold flex justify-between items-center">
                   Source
+                  <button className="bg-white/10 p-1 rounded" onClick={close}>
+                    <IoClose />
+                  </button>
                 </label>
                 <section className="grid grid-cols-2 gap-1 p-1">
                   {!isLoading &&
@@ -77,7 +81,7 @@ export default function BrowseLayoutGroupMenu() {
                         onClick={close}
                       >
                         <span className="font-medium">{group.title}</span>
-                        <span className="hidden xxs:block text-xs text-white/60">
+                        <span className="hidden xxs:block text-xs text-white/50">
                           {group.link}
                         </span>
                       </NavLink>
