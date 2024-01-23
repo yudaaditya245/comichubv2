@@ -19,7 +19,6 @@ import Home from "./pages/home/home.jsx";
 import Browse from "./pages/browse/Browse.jsx";
 import BrowseLayout from "./components/layout/BrowseLayout.jsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import BrowseGroup from "./pages/browse/groups/BrowseGroup.jsx";
 // END PAGES
 
 const router = createBrowserRouter(

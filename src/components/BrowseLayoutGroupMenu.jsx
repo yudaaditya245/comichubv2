@@ -6,23 +6,11 @@ import { IoClose } from "react-icons/io5";
 import { MdCollectionsBookmark } from "react-icons/md";
 import { Popover, Transition } from "@headlessui/react";
 import { Fragment } from "react";
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import { Link, NavLink } from "react-router-dom";
 
-export default function BrowseLayoutGroupMenu() {
+export default function BrowseLayoutGroupMenu({ groupdata }) {
   const { isVisible } = useNavAutohide();
-
-  const { isLoading, data: groupLists } = useQuery({
-    queryKey: ["getGroupLists"],
-    queryFn: async () => {
-      const { data } = await axios.get(
-        `${import.meta.env.VITE_API_URL}/group/getall`
-      );
-      if (data) return data;
-      throw Error();
-    },
-  });
+  const { isLoading, data: groupLists } = groupdata;
 
   return (
     <section
@@ -55,18 +43,37 @@ export default function BrowseLayoutGroupMenu() {
           leaveTo="opacity-0 scale-90"
         >
           <Popover.Panel
-            className="absolute bottom-5 right-5 md:right-0 bg-dark-800 rounded overflow-hidden
+            className="absolute bottom-5 right-5 md:right-0 bg-dark-800 rounded-lg overflow-hidden
                         flex flex-col max-w-full"
           >
             {({ close }) => (
               <>
                 <label className="bg-white/10 pl-5 pr-4 py-3 text-[0.9rem] font-semibold flex justify-between items-center">
                   Source
-                  <button className="bg-cyan-600 p-[0.1rem] text-white rounded" onClick={close}>
-                    <IoClose size={17}/>
+                  <button
+                    className="bg-cyan-600 p-[0.1rem] text-white rounded"
+                    onClick={close}
+                  >
+                    <IoClose size={17} />
                   </button>
                 </label>
                 <section className="grid grid-cols-2 gap-1 p-1">
+                  <Link
+                    to="/browse"
+                    className={twMerge(
+                      "text-sm rounded flex flex-col hover:bg-white/10 px-4 py-2"
+                    )}
+                    onClick={close}
+                  >
+                    <span className="font-medium flex gap-[0.35rem] items-center">
+                      <MdCollectionsBookmark className="mb-[0.1rem]" />
+                      All
+                    </span>
+                    <span className="hidden xxs:block text-xs text-white/50">
+                      Show all collection
+                    </span>
+                  </Link>
+
                   {!isLoading &&
                     groupLists.map((group) => (
                       <NavLink
@@ -86,17 +93,6 @@ export default function BrowseLayoutGroupMenu() {
                         </span>
                       </NavLink>
                     ))}
-
-                  <Link
-                    to="/browse"
-                    className={twMerge(
-                      "text-sm rounded flex items-center gap-2 hover:bg-white/10 px-4 py-2"
-                    )}
-                    onClick={close}
-                  >
-                    <MdCollectionsBookmark />
-                    All Collections
-                  </Link>
                 </section>
               </>
             )}

@@ -6,8 +6,8 @@ export default function ComicCard({ comic, label = false }) {
     <div className="flex flex-col gap-3">
       <div className="w-full aspect-[3/4.7] overflow-hidden rounded-lg relative bg-cyan-600">
         {label && (
-          <div className="absolute top-0 flex w-full justify-end bg-gradient-to-b from-black/50 to-transparent p-1 pb-3">
-            <span className="rounded-bl-lg rounded-tr bg-cyan-600/70 px-2 text-[0.8rem] backdrop-blur-sm">
+          <div className=" absolute top-0 flex w-full p-1 pb-3">
+            <span className="rounded-md bg-black/60 px-3 py-1 text-[0.78rem] backdrop-blur-sm font-semibold text-white/85">
               {comic.source}
             </span>
           </div>
@@ -21,7 +21,7 @@ export default function ComicCard({ comic, label = false }) {
           className="w-full h-full object-cover text-xs"
         />
 
-        <section className="flex items-center gap-2 absolute bottom-[-1px] pr-2 pl-3 py-[0.4rem] bg-gradient-to-t from-black/80 to-black/50 w-full backdrop-blur-sm">
+        <section className="flex items-center gap-2 absolute bottom-[-1px] pr-2 pl-3 py-[0.4rem] bg-gradient-to-t from-black/90 to-black/60 w-full backdrop-blur-sm">
           <section className="flex grow flex-col">
             <span className="text-[0.8rem] font-[700]">
               Chapter {comic.latest_chapter}
@@ -34,7 +34,7 @@ export default function ComicCard({ comic, label = false }) {
         </section>
       </div>
 
-      <h3 className="text-sm line-clamp-2 leading-6">{comic.title}</h3>
+      <h3 className="text-sm line-clamp-2 leading-6 px-[0.13rem]">{comic.title}</h3>
     </div>
   );
 }
