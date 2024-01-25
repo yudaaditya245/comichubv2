@@ -8,7 +8,7 @@ import ComicCard from "../../components/ComicCard";
 import { Link, useOutletContext, useParams } from "react-router-dom";
 import { SkeletonLatestComics } from "../../components/Skeletons";
 import { twMerge } from "tailwind-merge";
-import { fakeLoad } from "../../../hooks/useFakeLoad";
+import { fakeLoad } from "../../../hooks/fakeLoad";
 import BrowsePageNoComics from "../../components/BrowsePageNoComics";
 
 export default function Browse() {
@@ -42,10 +42,12 @@ export default function Browse() {
 
   // group data
   const { data: sourceall } = useOutletContext();
-  const sourcedata = sourceall?.find((s) => s.slug === source) ?? undefined;
+
+  const sourcedata = sourceall && sourceall?.find((s) => s.slug === source) || null;
   const sourcetitle = sourcedata?.title || "_";
   const sourcelink = sourcedata?.link || "_";
   ////
+  // console.log(sourceall);
 
   const isPrev = page <= 1;
   const isNext = data && data.isNext;
